@@ -12,22 +12,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class SquareClassTest {
     @ParameterizedTest
     @MethodSource("provideInputstoAreaMethod")
-    public void shouldCalculateAreaWhenWidthandBreadthofRectangleGiven(double width, double breadth, double expectedArea) {
+    public void shouldCalculateAreaWhenSideofSquareGiven(double side, double expectedArea) {
 
-        Rectangle rectangle = new Rectangle(width, breadth);
+        Square square = new Square(side);
 
-        double actualArea = rectangle.area();
+        double actualArea = square.area();
 
         assertEquals(expectedArea, actualArea);
     }
 
     @ParameterizedTest
     @MethodSource("provideInputstoPerimeterMethod")
-    public void shouldCalculatePerimeterWhenWidthandBreadthofRectangleGiven(double width, double breadth, double expectedPerimeter) {
+    public void shouldCalculatePerimeterWhenWidthandBreadthofRectangleGiven(double side, double expectedPerimeter) {
 
-        Rectangle rectangle = new Rectangle(width, breadth);
+        Square square = new Square(side);
 
-        double actualPerimeter = rectangle.perimeter();
+        double actualPerimeter = square.perimeter();
 
         assertEquals(expectedPerimeter, actualPerimeter);
 
@@ -35,19 +35,19 @@ public class SquareClassTest {
 
     private static Stream<Arguments> provideInputstoAreaMethod() {
         return Stream.of(
-                Arguments.of(2.0, 3.0, 6.0),
-                Arguments.of(2.0, 0.0, 0),
-                Arguments.of(0.0, 3.0, 0),
-                Arguments.of(5, 3, 15)
+                Arguments.of(2.0, 4.0),
+                Arguments.of(4, 16),
+                Arguments.of(0.0, 0),
+                Arguments.of(5, 25)
         );
     }
 
     private static Stream<Arguments> provideInputstoPerimeterMethod() {
         return Stream.of(
-                Arguments.of(2.0, 3.0, 10.0),
-                Arguments.of(2.0, 0.0, 4),
-                Arguments.of(0.0, 3.0, 6),
-                Arguments.of(5, 3, 16)
+                Arguments.of(8.0, 32.0),
+                Arguments.of(2.0, 8),
+                Arguments.of(0.0, 0),
+                Arguments.of(5, 20.0)
         );
     }
 
