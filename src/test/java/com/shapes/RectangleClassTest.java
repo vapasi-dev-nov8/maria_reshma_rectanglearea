@@ -21,28 +21,19 @@ public class RectangleClassTest {
         assertEquals(expectedArea, actualArea);
     }
 
-//    @Test
-//    public void shouldCalculateAreaWhenWidthandBreadthofRectangleGiven() {
-//
-//        Rectangle rectangle = new Rectangle(5.0,3.0);
-//
-//        assertEquals(15.0, rectangle.area());
-//
-//        Rectangle rectangle1 = new Rectangle(5,3);
-//
-//        assertEquals(15, rectangle1.area());
-//    }
+    @ParameterizedTest
+    @MethodSource("provideInputstoPerimeterMethod")
+    public void shouldCalculatePerimeterWhenWidthandBreadthofRectangleGiven(double width, double breadth, double expectedPerimeter) {
 
-    @Test
-    public void shouldCalculatePerimeterWhenWidthandBreadthofRectangleGiven() {
+        Rectangle rectangle = new Rectangle(width, breadth);
 
-        Rectangle rectangle = new Rectangle(5.0,3.0);
+        double actualPerimeter = rectangle.perimeter();
 
-        assertEquals(16, rectangle.perimeter());
+        assertEquals(expectedPerimeter, actualPerimeter);
 
     }
 
-    private static Stream<Arguments> provideInputstoAreaMethod(){
+    private static Stream<Arguments> provideInputstoAreaMethod() {
         return Stream.of(
                 Arguments.of(2.0, 3.0, 6.0),
                 Arguments.of(2.0, 0.0, 0),
@@ -51,7 +42,12 @@ public class RectangleClassTest {
         );
     }
 
-
-
-
+    private static Stream<Arguments> provideInputstoPerimeterMethod() {
+        return Stream.of(
+                Arguments.of(2.0, 3.0, 10.0),
+                Arguments.of(2.0, 0.0, 4),
+                Arguments.of(0.0, 3.0, 6),
+                Arguments.of(5, 3, 16)
+        );
+    }
 }
